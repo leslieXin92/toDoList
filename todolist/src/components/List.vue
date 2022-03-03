@@ -6,6 +6,7 @@
                 :key="item.id"
                 :item="item"
                 :handleStatusChanged="handleStatusChanged"
+                :deleteItem="deleteItem"
             />
         </ul>
     </div>
@@ -19,7 +20,7 @@ export default {
     components: {
         Item
     },
-    props: ['list', 'handleStatusChanged']
+    props: ['list', 'handleStatusChanged', 'deleteItem']
 }
 </script>
 

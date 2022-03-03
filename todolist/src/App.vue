@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <Add :addItem="addItem" />
-        <List :list="list" :handleStatusChanged="handleStatusChanged" />
+        <List :list="list" :handleStatusChanged="handleStatusChanged" :deleteItem="deleteItem" />
         <Options />
     </div>
 </template>
@@ -47,6 +47,9 @@ export default {
                     item.status = !item.status
                 }
             })
+        },
+        deleteItem (id) {
+            this.list = this.list.filter(item => item.id != id)
         }
     }
 }
