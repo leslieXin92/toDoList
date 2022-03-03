@@ -2,7 +2,11 @@
     <div class="box">
         <Add :addItem="addItem" />
         <List :list="list" :handleStatusChanged="handleStatusChanged" :deleteItem="deleteItem" />
-        <Options />
+        <Options
+            :totalCount="totalCount"
+            :completeCount="completeCount"
+            :handleCheckAll="handleCheckAll"
+        />
     </div>
 </template>
 
@@ -27,6 +31,20 @@ export default {
             ]
         }
     },
+    computed: {
+        totalCount () {
+            return this.list.length
+        },
+        completeCount () {
+            let len = 0
+            this.list.map(item => {
+                if (item.status) {
+                    len++
+                }
+            })
+            return len
+        },
+    },
     methods: {
         addItem (e) {
             if (!e.target.value.trim()) {
@@ -50,6 +68,13 @@ export default {
         },
         deleteItem (id) {
             this.list = this.list.filter(item => item.id != id)
+        },
+        handleCheckAll () {
+            if (this.completeCount < this.totalCount) {
+                this.list.map(item => item.status = true)
+            } else {
+                this.list.map(item => item.status = false)
+            }
         }
     }
 }
