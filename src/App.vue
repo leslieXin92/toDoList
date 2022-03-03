@@ -26,11 +26,7 @@ export default {
     },
     data () {
         return {
-            list: [
-                { id: '001', content: 'Vue', status: true },
-                { id: '002', content: 'node', status: false },
-                { id: '003', content: 'websocket', status: false },
-            ],
+            list: JSON.parse(localStorage.getItem('toDoList')) || [],
             flag: false
         }
     },
@@ -54,6 +50,12 @@ export default {
                 this.flag = true
             } else {
                 this.flag = false
+            }
+        },
+        list: {
+            deep: true,
+            handler (value) {
+                localStorage.setItem('toDoList', JSON.stringify(value))
             }
         }
     },
