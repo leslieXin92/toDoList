@@ -1,7 +1,7 @@
 <template>
     <div class="box">
-        <Add />
-        <List />
+        <Add :addItem="addItem" />
+        <List :list="list" />
         <Options />
     </div>
 </template>
@@ -17,6 +17,30 @@ export default {
         Add,
         Options,
         List
+    },
+    data () {
+        return {
+            list: [
+                { id: '001', content: '1', status: 1 },
+                { id: '002', content: '2', status: 0 },
+                { id: '003', content: '3', status: 1 },
+            ]
+        }
+    },
+    methods: {
+        addItem (e) {
+            if (!e.target.value.trim()) {
+                e.target.value = ''
+                return
+            }
+            const newItem = {
+                id: new Date().getTime(),
+                content: e.target.value.trim(),
+                status: 0
+            }
+            this.list.unshift(newItem)
+            e.target.value = ''
+        }
     }
 }
 </script>

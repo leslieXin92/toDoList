@@ -1,34 +1,25 @@
 <template>
     <div class="itemBox">
-        <ul>
-            <li v-for="item in list" :key="item.id">
-                <input type="checkbox" />
-                <div class="content">{{ item.content }}</div>
-            </li>
-        </ul>
+        <li>
+            <input type="checkbox" :checked="item.status" @change="handleStatusChange" />
+            <div class="content">{{ item.content }}</div>
+        </li>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Item',
-    data () {
-        return {
-            list: [
-                { id: '001', content: '1', status: 1 },
-                { id: '002', content: '2', status: 0 },
-                { id: '003', content: '3', status: 1 },
-            ]
+    props: ['item'],
+    methods: {
+        handleStatusChange (e) {
+            console.log(e);
         }
-    },
-
+    }
 }
 </script>
 
 <style scoped>
-ul {
-    margin: 0 auto;
-}
 li {
     display: flex;
     align-items: center;

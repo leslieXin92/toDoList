@@ -19,6 +19,7 @@ export default {
     align-items: center;
     width: 80%;
     height: 50px;
+    margin-bottom: 10px;
     background-color: aquamarine;
 }
 input {

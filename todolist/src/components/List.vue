@@ -1,7 +1,8 @@
 <template>
     <div class="listBox">
-        <Item />
-        <Item />
+        <ul>
+            <Item v-for="item in list" :key="item.id" :item="item" />
+        </ul>
     </div>
 </template>
 
@@ -12,7 +13,8 @@ export default {
     name: 'List',
     components: {
         Item
-    }
+    },
+    props: ['list']
 }
 </script>
 
@@ -21,5 +23,8 @@ export default {
     width: 80%;
     height: auto;
     margin: 0px auto;
+}
+ul {
+    margin: 0 auto;
 }
 </style>
