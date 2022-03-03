@@ -6,6 +6,8 @@
             :totalCount="totalCount"
             :completeCount="completeCount"
             :handleCheckAll="handleCheckAll"
+            :deleteCheckedItem="deleteCheckedItem"
+            :flag="flag"
         />
     </div>
 </template>
@@ -28,7 +30,8 @@ export default {
                 { id: '001', content: 'Vue', status: true },
                 { id: '002', content: 'node', status: false },
                 { id: '003', content: 'websocket', status: false },
-            ]
+            ],
+            flag: false
         }
     },
     computed: {
@@ -44,6 +47,15 @@ export default {
             })
             return len
         },
+    },
+    watch: {
+        completeCount () {
+            if ((this.completeCount === this.totalCount) && (this.totalCount != 0)) {
+                this.flag = true
+            } else {
+                this.flag = false
+            }
+        }
     },
     methods: {
         addItem (e) {
@@ -75,6 +87,9 @@ export default {
             } else {
                 this.list.map(item => item.status = false)
             }
+        },
+        deleteCheckedItem () {
+            this.list = this.list.filter(item => item.status != true)
         }
     }
 }

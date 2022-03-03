@@ -1,15 +1,15 @@
 <template>
     <div class="optionsBox">
-        <input type="checkbox" @click="handleCheckAll" />
+        <input type="checkbox" :checked="flag" @click="handleCheckAll" />
         <div>已完成 {{ completeCount }} / 全部 {{ totalCount }}</div>
-        <button>清除已完成</button>
+        <button @click="deleteCheckedItem">清除已完成</button>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Options',
-    props: ['totalCount', 'completeCount', 'handleCheckAll']
+    props: ['totalCount', 'completeCount', 'handleCheckAll', 'deleteCheckedItem', 'flag']
 
 }
 </script>
