@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <Add :addItem="addItem" />
-        <List :list="list" />
+        <List :list="list" :handleStatusChanged="handleStatusChanged" />
         <Options />
     </div>
 </template>
@@ -21,9 +21,9 @@ export default {
     data () {
         return {
             list: [
-                { id: '001', content: '1', status: 1 },
-                { id: '002', content: '2', status: 0 },
-                { id: '003', content: '3', status: 1 },
+                { id: '001', content: 'Vue', status: true },
+                { id: '002', content: 'node', status: false },
+                { id: '003', content: 'websocket', status: false },
             ]
         }
     },
@@ -36,10 +36,17 @@ export default {
             const newItem = {
                 id: new Date().getTime(),
                 content: e.target.value.trim(),
-                status: 0
+                status: false
             }
             this.list.unshift(newItem)
             e.target.value = ''
+        },
+        handleStatusChanged (id) {
+            this.list.map(item => {
+                if (item.id === id) {
+                    item.status = !item.status
+                }
+            })
         }
     }
 }

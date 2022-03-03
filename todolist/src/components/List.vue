@@ -1,7 +1,12 @@
 <template>
     <div class="listBox">
         <ul>
-            <Item v-for="item in list" :key="item.id" :item="item" />
+            <Item
+                v-for="item in list"
+                :key="item.id"
+                :item="item"
+                :handleStatusChanged="handleStatusChanged"
+            />
         </ul>
     </div>
 </template>
@@ -14,7 +19,7 @@ export default {
     components: {
         Item
     },
-    props: ['list']
+    props: ['list', 'handleStatusChanged']
 }
 </script>
 

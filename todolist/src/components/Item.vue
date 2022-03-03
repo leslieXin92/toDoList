@@ -1,7 +1,7 @@
 <template>
     <div class="itemBox">
         <li>
-            <input type="checkbox" :checked="item.status" @change="handleStatusChange" />
+            <input type="checkbox" :checked="item.status" @change="handleStatusChanged(item.id)" />
             <div class="content">{{ item.content }}</div>
         </li>
     </div>
@@ -10,12 +10,7 @@
 <script>
 export default {
     name: 'Item',
-    props: ['item'],
-    methods: {
-        handleStatusChange (e) {
-            console.log(e);
-        }
-    }
+    props: ['item', 'handleStatusChanged'],
 }
 </script>
 
