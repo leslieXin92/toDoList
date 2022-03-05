@@ -57,6 +57,7 @@ export default {
     mounted () {
         this.$bus.$on('changeStatus', this.handleChangeStatus)
         this.$bus.$on('deleteItem', this.handleDeleteItem)
+        this.$bus.$on('changeIsEdit', this.handleChangeIsEdit)
     },
     methods: {
         addItem (newItem) {
@@ -77,6 +78,20 @@ export default {
         },
         deleteAll () {
             this.list = this.list.filter(item => item.status != true)
+        },
+        handleChangeIsEdit (type, itemData) {
+            this.list.map(item => {
+                if (itemData.id === item.id) {
+                    item.isEdit = !item.isEdit
+                }
+            })
+            // if (type === 'save') {
+            //     this.list.map(item => {
+            //         if (itemData.id === item.id) {
+            //             item.isEdit = true
+            //         }
+            //     })
+            // }
         }
     },
 }

@@ -16,7 +16,8 @@ export default {
             const newItem = {
                 id: new Date().getTime(),
                 content: e.target.value.trim(),
-                status: false
+                status: false,
+                isEdit: false
             }
             this.$emit('addItem', newItem)
             e.target.value = ''
